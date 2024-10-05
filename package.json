@@ -10,8 +10,11 @@
     "@types/node": "^16.18.112",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.24",
+    "@types/react-router-dom": "^5.3.3",
+    "axios": "^1.7.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^6.26.2",
     "react-scripts": "^5.0.1",
     "typescript": "^3.7.5",
     "web-vitals": "^2.1.4"
