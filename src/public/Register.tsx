@@ -35,35 +35,45 @@ class Register extends Component {
         }
 
         return (
-            <form className="form-signin" onSubmit={this.submit}>
-                <h1 className="h3 mb-3 font-weight-normal">Please register</h1>
+            <form className="form-signin container" onSubmit={this.submit}>
+                <h1 className="h3 mb-3 font-weight-normal text-center">Please register</h1>
 
-                <label htmlFor="firstName" className="visually-hidden">First Name</label>
-                <input type="text" id="firstName" className="form-control" placeholder="First Name" required
-                       onChange={e => this.first_name = e.target.value}
-                />
+                <div className="row mb-3">
+                    <label htmlFor="firstName" className="visually-hidden">First Name</label>
+                    <input type="text" id="firstName" className="form-control" placeholder="First Name" required
+                           onChange={e => this.first_name = e.target.value}
+                    />
+                </div>
 
-                <label htmlFor="lastName" className="visually-hidden">Last Name</label>
-                <input type="text" id="lastName" className="form-control" placeholder="Last Name" required
-                       onChange={e => this.last_name = e.target.value}
-                />
+                <div className="row mb-3">
+                    <label htmlFor="lastName" className="visually-hidden">Last Name</label>
+                    <input type="text" id="lastName" className="form-control" placeholder="Last Name" required
+                           onChange={e => this.last_name = e.target.value}
+                    />
+                </div>
 
-                <label htmlFor="inputEmail" className="visually-hidden">Email address</label>
-                <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required
-                       onChange={e => this.email = e.target.value}
-                />
+                <div className="row mb-3">
+                    <label htmlFor="inputEmail" className="visually-hidden">Email address</label>
+                    <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required
+                           onChange={e => this.email = e.target.value}
+                    />
+                </div>
 
-                <label htmlFor="inputPassword" className="visually-hidden">Password</label>
-                <input type="password" id="inputPassword" className="form-control" placeholder="Password"
-                       onChange={e => this.password = e.target.value}
-                       required/>
+                <div className="row mb-3">
+                    <label htmlFor="inputPassword" className="visually-hidden">Password</label>
+                    <input type="password" id="inputPassword" className="form-control" placeholder="Password"
+                           onChange={e => this.password = e.target.value}
+                           required/>
+                </div>
 
-                <label htmlFor="passwordConfirm" className="visually-hidden">Password Confirm</label>
-                <input type="password" id="passwordConfirm" className="form-control" placeholder="Password Confirm"
-                       onChange={e => this.password_confirm = e.target.value}
-                       required/>
+                <div className="row mb-3">
+                    <label htmlFor="passwordConfirm" className="visually-hidden">Password Confirm</label>
+                    <input type="password" id="passwordConfirm" className="form-control" placeholder="Password Confirm"
+                           onChange={e => this.password_confirm = e.target.value}
+                           required/>
+                </div>
 
-                <button className="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+                <button className="btn btn-lg btn-primary btn-block w-100" type="submit">Register</button>
             </form>
         );
     }

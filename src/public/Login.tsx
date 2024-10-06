@@ -35,18 +35,24 @@ class Login extends Component {
         return (
             <form className="form-signin" onSubmit={this.submit}>
                 <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label htmlFor="inputEmail" className="visually-hidden">Email address</label>
-                <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required
-                       onChange={e => this.email = e.target.value}
-                />
-                <label htmlFor="inputPassword" className="visually-hidden">Password</label>
-                <input type="password" id="inputPassword" className="form-control" placeholder="Password"
-                       onChange={e => this.password = e.target.value}
-                       required/>
-                <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </form>
-        )
-    }
-}
 
-export default Login;
+                <div className="row mb-3">
+                    <label htmlFor="inputEmail" className="visually-hidden">Email address</label>
+                    <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required
+                           onChange={e => this.email = e.target.value}
+                    />
+                </div>
+
+                <div className="row mb-3">
+                    <label htmlFor="inputPassword" className="visually-hidden">Password</label>
+                    <input type="password" id="inputPassword" className="form-control" placeholder="Password"
+                           onChange={e => this.password = e.target.value}
+                           required/>
+                    <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </div>
+            </form>
+    )
+    }
+    }
+
+    export default Login;
