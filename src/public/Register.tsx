@@ -38,27 +38,27 @@ class Register extends Component {
             <form className="form-signin" onSubmit={this.submit}>
                 <h1 className="h3 mb-3 font-weight-normal">Please register</h1>
 
-                <label htmlFor="firstName" className="sr-only">First Name</label>
+                <label htmlFor="firstName" className="visually-hidden">First Name</label>
                 <input type="text" id="firstName" className="form-control" placeholder="First Name" required
                        onChange={e => this.first_name = e.target.value}
                 />
 
-                <label htmlFor="lastName" className="sr-only">Last Name</label>
+                <label htmlFor="lastName" className="visually-hidden">Last Name</label>
                 <input type="text" id="lastName" className="form-control" placeholder="Last Name" required
                        onChange={e => this.last_name = e.target.value}
                 />
 
-                <label htmlFor="inputEmail" className="sr-only">Email address</label>
+                <label htmlFor="inputEmail" className="visually-hidden">Email address</label>
                 <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required
                        onChange={e => this.email = e.target.value}
                 />
 
-                <label htmlFor="inputPassword" className="sr-only">Password</label>
+                <label htmlFor="inputPassword" className="visually-hidden">Password</label>
                 <input type="password" id="inputPassword" className="form-control" placeholder="Password"
                        onChange={e => this.password = e.target.value}
                        required/>
 
-                <label htmlFor="passwordConfirm" className="sr-only">Password Confirm</label>
+                <label htmlFor="passwordConfirm" className="visually-hidden">Password Confirm</label>
                 <input type="password" id="passwordConfirm" className="form-control" placeholder="Password Confirm"
                        onChange={e => this.password_confirm = e.target.value}
                        required/>
