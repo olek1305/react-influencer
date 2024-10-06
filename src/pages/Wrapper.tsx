@@ -1,30 +1,54 @@
-import React, {Component, PropsWithChildren} from 'react';
+import React, {Component, Dispatch, PropsWithChildren} from 'react';
 import Nav from "../components/Nav";
-import Header from "../components/Header";
+import axios from 'axios';
+import {User} from "../classes/user";
+import {connect} from "react-redux";
+import setUser from "../redux/actions/setUserAction";
 
-type WrapperProps = PropsWithChildren<any>;
+class Wrapper extends Component<PropsWithChildren<any>> {
 
-class Wrapper extends Component<WrapperProps> {
+    componentDidMount = async () => {
+        try {
+            const response = await axios.get('user');
+
+            const user: User = response.data.data;
+
+            this.props.setUser(new User(
+                user.id,
+                user.first_name,
+                user.last_name,
+                user.email,
+                user.revenue
+
+            ));
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     render() {
-        const { children } = this.props
         return (
-            <div>
+            <>
                 <Nav/>
 
-                <main>
-
-                    <Header/>
-
-                    <div className="album py-5 bg-body-tertiary">
-                        <div className="container">
-                            {children}
-                        </div>
-                    </div>
-
+                <main role="main">
+                    {this.props.children}
                 </main>
-            </div>
+            </>
         );
     }
 }
 
-export default Wrapper;
+const mapStateToProps = (state: { user: User }) => {
+    return {
+        user: state.user
+    };
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<any>) => {
+    return {
+        setUser: (user: User) => dispatch(setUser(user))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);
