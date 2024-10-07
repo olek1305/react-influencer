@@ -16,4 +16,14 @@ export class User {
     get name() {
         return this.first_name + ' ' + this.last_name;
     }
+
+    toObject() {
+        return {
+            id: this.id,
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            revenue: this.revenue,
+        };
+    }
 }

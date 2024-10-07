@@ -1,12 +1,16 @@
-import React, {Component, Dispatch, PropsWithChildren} from 'react';
+import React, { Component, Dispatch } from 'react';
 import Nav from "../components/Nav";
 import axios from 'axios';
-import {User} from "../classes/user";
-import {connect} from "react-redux";
-import setUser from "../redux/actions/setUserAction";
+import { User } from "../classes/user";
+import { connect } from "react-redux";
+import setUserAction from "../redux/actions/setUserAction";
 
-class Wrapper extends Component<PropsWithChildren<any>> {
+interface Props {
+    setUser: (user: User) => void;
+    children: React.ReactNode;
+}
 
+class Wrapper extends Component<Props> {
     componentDidMount = async () => {
         try {
             const response = await axios.get('user');
@@ -19,18 +23,16 @@ class Wrapper extends Component<PropsWithChildren<any>> {
                 user.last_name,
                 user.email,
                 user.revenue
-
             ));
         } catch (e) {
-            console.log(e)
+            console.error("Error fetching user:", e);
         }
     }
 
     render() {
         return (
             <>
-                <Nav/>
-
+                <Nav />
                 <main role="main">
                     {this.props.children}
                 </main>
@@ -47,7 +49,7 @@ const mapStateToProps = (state: { user: User }) => {
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => {
     return {
-        setUser: (user: User) => dispatch(setUser(user))
+        setUser: (user: User) => dispatch(setUserAction(user))
     }
 }
 
