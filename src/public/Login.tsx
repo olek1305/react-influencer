@@ -19,6 +19,8 @@ class Login extends Component {
             scope: 'influencer'
         });
 
+        console.log(response);
+
         localStorage.setItem('token', response.data.token);
         axios.defaults.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
 
@@ -51,8 +53,8 @@ class Login extends Component {
                     <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                 </div>
             </form>
-    )
+        )
     }
-    }
+}
 
     export default Login;

@@ -3,7 +3,7 @@ import Nav from "../components/Nav";
 import axios from 'axios';
 import { User } from "../classes/user";
 import { connect } from "react-redux";
-import setUserAction from "../redux/actions/setUserAction";
+import { setUser } from "../redux/reducers/userSlice"
 
 interface Props {
     setUser: (user: User) => void;
@@ -15,15 +15,9 @@ class Wrapper extends Component<Props> {
         try {
             const response = await axios.get('user');
 
-            const user: User = response.data.data;
+            const userData = response.data.data;
 
-            this.props.setUser(new User(
-                user.id,
-                user.first_name,
-                user.last_name,
-                user.email,
-                user.revenue
-            ));
+            this.props.setUser(userData);
         } catch (e) {
             console.error("Error fetching user:", e);
         }
@@ -41,16 +35,12 @@ class Wrapper extends Component<Props> {
     }
 }
 
-const mapStateToProps = (state: { user: User }) => {
-    return {
-        user: state.user
-    };
-}
+
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => {
     return {
-        setUser: (user: User) => dispatch(setUserAction(user))
-    }
-}
+        setUser: (user: User) => dispatch(setUser(user))
+    };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);
+export default connect(null, mapDispatchToProps)(Wrapper);
