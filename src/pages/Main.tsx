@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import Wrapper from "./Wrapper";
+import Header from "../components/Header";
 
 class Main extends Component {
     render() {
         return (
             <Wrapper>
+                <Header/>
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div className="col">
                         <div className="card shadow-sm">
