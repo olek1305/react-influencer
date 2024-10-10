@@ -1,54 +1,56 @@
-import React, { Component, Dispatch } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import Nav from "../components/Nav";
 import axios from 'axios';
-import { User } from "../classes/user";
-import { connect } from "react-redux";
-import { setUser } from "../redux/reducers/userSlice"
-import {RootState} from "../redux/configureStore";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/reducers/userSlice";
 
-interface Props {
-    user: User | null;
-    setUser: (user: User) => void;
-    children: React.ReactNode;
+interface WrapperProps {
+    children: ReactNode;
 }
 
-class Wrapper extends Component<Props> {
-    componentDidMount = async () => {
-        // Only fetch user if user is not already set in Redux
-        if (!this.props.user) {
+const Wrapper = ({ children }: WrapperProps) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+        const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+
+        if (storedToken && storedUser) {
+            dispatch(setUser({ ...storedUser, token: storedToken }));
+            axios.defaults.headers.Authorization = `Bearer ${storedToken}`;
+        }
+
+        const fetchUser = async () => {
+            if (!storedToken) {
+                console.warn("User is not logged in");
+                return;
+            }
+
             try {
-                const response = await axios.get('user');
+                const response = await axios.get('user', {
+                    headers: {
+                        Authorization: `Bearer ${storedToken}`
+                    }
+                });
                 const userData = response.data.data;
-                this.props.setUser(userData); // Set user in Redux store
+                dispatch(setUser(userData));
+                localStorage.setItem('user', JSON.stringify(userData));
             } catch (e) {
                 console.error("Error fetching user:", e);
             }
-        }
-    }
+        };
 
-    render() {
-        return (
-            <>
-                <Nav />
-                <main role="main">
-                    {this.props.children}
-                </main>
-            </>
-        );
-    }
+        fetchUser();
+    }, [dispatch]);
+
+    return (
+        <>
+            <Nav />
+            <main role="main">
+                {children}
+            </main>
+        </>
+    );
 }
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        user: state.user, // Get user from Redux state
-    };
-};
-
-const mapDispatchToProps = (dispatch: Dispatch<any>) => {
-    return {
-        setUser: (user: User) => dispatch(setUser(user)),
-    };
-};
-
-// Connect component to Redux store
-export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);
+export default Wrapper;
