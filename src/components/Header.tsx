@@ -8,8 +8,6 @@ const Header = () => {
     const [title, setTitle] = useState('Welcome');
     const [description, setDescription] = useState('Share links and earn 10% of the product price!');
 
-
-
     useEffect(() => {
         if (user?.id) {
             setTitle('$' + user.revenue);
