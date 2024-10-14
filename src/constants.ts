@@ -8,6 +8,6 @@ const prod = {
     CHECKOUT_URL: '',
 }
 
-export default {
-    ...(process.env.NODE_ENV === 'development' ? dev : prod)
-}
+const config = process.env.NODE_ENV === 'development' ? dev : prod;
+
+export default config;
