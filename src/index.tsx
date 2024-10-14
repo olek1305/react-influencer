@@ -5,10 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from "axios";
 import {Provider} from "react-redux";
-
 import {store} from "./redux/configureStore";
+import constants from "./constants";
 
-axios.defaults.baseURL = 'http://127.0.0.1:8003/api/influencer';
+axios.defaults.baseURL = constants.BASE_URL;
 axios.defaults.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
 
 ReactDOM.render(
