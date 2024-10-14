@@ -71,3 +71,11 @@
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
 }
+
+.bg-yellow {
+  background-color: #FFD700 !important;
+}
+
+.border-green {
+  background-color: #76FFC6 !important;
+}

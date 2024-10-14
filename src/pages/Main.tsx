@@ -101,7 +101,7 @@ const Main = () => {
                         {products.map((product: any) => (
                             <div className="col-md-4" key={product.id}>
                                 <div
-                                    className={isSelected(product.id) ? "card mb-4 shadow-sm selected" : "card mb-4 shadow-sm"}
+                                    className={isSelected(product.id) ? "card mb-4 shadow-sm selected border-green border-4 bg-yellow" : "card mb-4 shadow-sm"}
                                     onClick={() => select(product.id)}
                                 >
                                     <img src={product.image} height="200" alt={product.title} />
